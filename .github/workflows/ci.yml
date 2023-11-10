@@ -1,0 +1,58 @@
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - '**'
+
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+
+  unit-test:
+    name: Unit Test
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:11
+        env:
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: kickoff
+          POSTGRES_HOST: localhost
+        ports:
+          - 5432:5432
+
+    env:
+      PORT: 8000
+      ENV: TEST
+      TEST: false
+      LOCAL_TEST: true
+      DB_HOST: localhost
+      DB_PORT: 5432
+      DB_USER: user
+      DB_PASSWORD: password
+      DB_NAME: kickoff
+
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+
+      - name: Setup Database
+        run: go run ./cmd/migration/main.go
+
+      - name: Run Unit Tests
+        run: go test -failfast -covermode=count ./...
+
