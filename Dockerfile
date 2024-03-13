@@ -5,6 +5,11 @@ WORKDIR /app
 COPY . .
 COPY .env .
 
+RUN go mod download
+
+RUN go install github.com/swaggo/swag/cmd/swag@v1.8.8
+RUN swag init --parseInternal --parseDepth 1 -g ./cmd/api/main.go
+
 # Set environment variables for build
 RUN go env -w CGO_ENABLED=0 GOOS=linux GOARCH=amd64
 
