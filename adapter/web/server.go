@@ -4,15 +4,15 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/Pauloricardo2019/teste_fazpay/docs"
+	controller "github.com/Pauloricardo2019/teste_fazpay/internal/controller/interface"
+	middlewareIntf "github.com/Pauloricardo2019/teste_fazpay/internal/middleware/interface"
+	"github.com/Pauloricardo2019/teste_fazpay/internal/model"
 	sentryGin "github.com/getsentry/sentry-go/gin"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"go.uber.org/fx"
-	controller "kickoff/adapter/web/rest/controller/interface"
-	middlewareIntf "kickoff/adapter/web/rest/middleware/interface"
-	"kickoff/docs"
-	"kickoff/internal/model"
 	"net/http"
 	"time"
 )
@@ -27,10 +27,7 @@ type GlobalControllers struct {
 
 type Middlewares struct {
 	fx.In
-
-	AuthMiddleware     middlewareIntf.AuthMiddleware
-	LogMiddleware      middlewareIntf.LogMiddleware
-	TrackingMiddleware middlewareIntf.TrackingMiddleware
+	AuthMiddleware middlewareIntf.AuthMiddleware
 }
 
 type ServerRest struct {
@@ -71,8 +68,8 @@ func NewRestServer(
 	engine.Use(gin.Recovery())
 	engine.Use(UseCORS())
 
-	docs.SwaggerInfo.Title = "kickoff - API"
-	docs.SwaggerInfo.Description = "API para comunicação com o sistema kickoff"
+	docs.SwaggerInfo.Title = "github.com/Pauloricardo2019/teste_fazpay - API"
+	docs.SwaggerInfo.Description = "API para comunicação com o sistema github.com/Pauloricardo2019/teste_fazpay"
 	docs.SwaggerInfo.Version = "1.0"
 	docs.SwaggerInfo.Schemes = []string{"https", "http"}
 	docs.SwaggerInfo.BasePath = cfg.BasePath
@@ -97,7 +94,7 @@ func (s *ServerRest) registerRoutes() {
 		}))
 	}
 
-	basePath := s.Engine.Group(s.config.BasePath, s.middlewares.TrackingMiddleware.TrackRequest(), s.middlewares.LogMiddleware.LogRequest())
+	basePath := s.Engine.Group(s.config.BasePath)
 	{
 		basePath.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 

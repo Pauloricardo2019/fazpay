@@ -1,12 +1,12 @@
 package facade
 
 import (
-	"errors"
+	"github.com/Pauloricardo2019/teste_fazpay/internal/constants"
+	"github.com/Pauloricardo2019/teste_fazpay/internal/dto"
+	facadeIntf "github.com/Pauloricardo2019/teste_fazpay/internal/facade/interface"
+	service "github.com/Pauloricardo2019/teste_fazpay/internal/service/interface"
 	"golang.org/x/net/context"
-	"kickoff/dto"
-	"kickoff/internal/constants"
-	facadeIntf "kickoff/internal/facade/interface"
-	service "kickoff/internal/service/interface"
+	"time"
 )
 
 type SecurityFacade struct {
@@ -28,7 +28,7 @@ func (s *SecurityFacade) ValidateToken(ctx context.Context, validateTokenRequest
 	tokenVO := validateTokenRequest.ConvertToVO()
 
 	if tokenVO.Value == "" {
-		return nil, errors.New("token value not filled")
+		return nil, constants.ErrorTokenValueEmpty
 	}
 
 	found, tokenFound, err := s.tokenService.GetByValue(ctx, tokenVO.Value)
@@ -37,7 +37,12 @@ func (s *SecurityFacade) ValidateToken(ctx context.Context, validateTokenRequest
 	}
 
 	if !found {
-		return nil, errors.New("token not found")
+		return nil, constants.ErrorTokenNotFound
+	}
+
+	expiresAtIsValid := s.validateExpiresAt(tokenFound.ExpiresAt)
+	if !expiresAtIsValid {
+		return nil, constants.ErrorTokenExpired
 	}
 
 	tokenResponse := &dto.ValidateTokenResponse{}
@@ -46,18 +51,25 @@ func (s *SecurityFacade) ValidateToken(ctx context.Context, validateTokenRequest
 	return tokenResponse, nil
 }
 
+func (s *SecurityFacade) validateExpiresAt(expiresAt time.Time) bool {
+	if time.Now().Sub(expiresAt) > time.Hour*24 {
+		return false
+	}
+	return true
+}
+
 func (s *SecurityFacade) Login(ctx context.Context, loginRequest *dto.LoginRequest) (*dto.LoginResponse, error) {
 	loginUserObject := loginRequest.ConvertToVO()
 
-	if loginRequest.Login == "" {
-		return nil, errors.New("login not filled")
+	if loginRequest.Email == "" {
+		return nil, constants.ErrorLoginValueEmpty
 	}
 
 	if loginRequest.Password == "" {
-		return nil, errors.New("password not filled")
+		return nil, constants.ErrorLoginPassEmpty
 	}
 
-	found, userFound, err := s.userService.GetByLogin(ctx, loginUserObject)
+	found, userFound, err := s.userService.GetByEmailAndPassword(ctx, loginUserObject)
 	if err != nil {
 		return nil, err
 	}

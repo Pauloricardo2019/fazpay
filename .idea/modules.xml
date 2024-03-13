@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/kickoff-go.iml" filepath="$PROJECT_DIR$/.idea/kickoff-go.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/teste_fazpay.iml" filepath="$PROJECT_DIR$/.idea/teste_fazpay.iml" />
     </modules>
   </component>
 </project>

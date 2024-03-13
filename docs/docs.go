@@ -42,7 +42,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/dto.HealthCheckResponse"
+                            "$ref": "#/definitions/HealthCheckResponse"
                         }
                     }
                 }
@@ -73,7 +73,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/dto.LoginRequest"
+                            "$ref": "#/definitions/LoginRequest"
                         }
                     }
                 ],
@@ -81,19 +81,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/dto.LoginResponse"
+                            "$ref": "#/definitions/LoginResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/dto.Error"
+                            "$ref": "#/definitions/Error"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/dto.Error"
+                            "$ref": "#/definitions/Error"
                         }
                     }
                 }
@@ -124,7 +124,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/dto.CreateUserRequest"
+                            "$ref": "#/definitions/CreateUserRequest"
                         }
                     }
                 ],
@@ -132,7 +132,7 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/dto.CreateResponse"
+                            "$ref": "#/definitions/CreateUserResponse"
                         }
                     }
                 }
@@ -169,7 +169,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/dto.GetUserResponse"
+                            "$ref": "#/definitions/GetUserByIDResponse"
                         }
                     }
                 }
@@ -205,7 +205,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/dto.UpdateUserRequest"
+                            "$ref": "#/definitions/UpdateUserRequest"
                         }
                     }
                 ],
@@ -250,24 +250,16 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "dto.CreateResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "dto.CreateUserRequest": {
+        "CreateUserRequest": {
             "type": "object",
             "properties": {
                 "email": {
                     "type": "string"
                 },
-                "full_name": {
+                "first_name": {
                     "type": "string"
                 },
-                "login": {
+                "last_name": {
                     "type": "string"
                 },
                 "password": {
@@ -275,7 +267,15 @@ const docTemplate = `{
                 }
             }
         },
-        "dto.Error": {
+        "CreateUserResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "Error": {
             "type": "object",
             "properties": {
                 "message": {
@@ -283,27 +283,30 @@ const docTemplate = `{
                 }
             }
         },
-        "dto.GetUserResponse": {
+        "GetUserByIDResponse": {
             "type": "object",
             "properties": {
-                "create_at": {
+                "created_at": {
                     "type": "string"
                 },
                 "email": {
                     "type": "string"
                 },
-                "full_name": {
+                "first_name": {
                     "type": "string"
                 },
                 "id": {
                     "type": "integer"
                 },
-                "login": {
+                "last_name": {
+                    "type": "string"
+                },
+                "updated_at": {
                     "type": "string"
                 }
             }
         },
-        "dto.HealthCheckResponse": {
+        "HealthCheckResponse": {
             "type": "object",
             "properties": {
                 "status": {
@@ -311,10 +314,10 @@ const docTemplate = `{
                 }
             }
         },
-        "dto.LoginRequest": {
+        "LoginRequest": {
             "type": "object",
             "properties": {
-                "login": {
+                "email": {
                     "type": "string"
                 },
                 "password": {
@@ -322,13 +325,16 @@ const docTemplate = `{
                 }
             }
         },
-        "dto.LoginResponse": {
+        "LoginResponse": {
             "type": "object",
             "properties": {
                 "email": {
                     "type": "string"
                 },
-                "full_name": {
+                "first_name": {
+                    "type": "string"
+                },
+                "last_name": {
                     "type": "string"
                 },
                 "token": {
@@ -339,22 +345,28 @@ const docTemplate = `{
                 }
             }
         },
-        "dto.UpdateUserRequest": {
+        "UpdateUserRequest": {
             "type": "object",
             "properties": {
-                "create_at": {
+                "created_at": {
                     "type": "string"
                 },
                 "email": {
                     "type": "string"
                 },
-                "full_name": {
+                "first_name": {
                     "type": "string"
                 },
                 "id": {
                     "type": "integer"
                 },
-                "login": {
+                "last_name": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "updated_at": {
                     "type": "string"
                 }
             }

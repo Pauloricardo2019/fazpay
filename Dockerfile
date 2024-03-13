@@ -1,8 +1,9 @@
-FROM golang:1.20-alpine as builder
+FROM golang:latest as builder
 
 WORKDIR /app
 
 COPY . .
+COPY .env .
 
 # Set environment variables for build
 RUN go env -w CGO_ENABLED=0 GOOS=linux GOARCH=amd64
@@ -22,9 +23,11 @@ RUN apk add --no-cache bash \
     && adduser --disabled-password --gecos "" --no-create-home app
 
 COPY --from=builder --chown=app /app/*.bin /app/
+COPY --from=builder --chown=app /app/*.env /app/
+
 
 WORKDIR /app
 
 USER app
 
-CMD ./api.bin
+CMD ./api.bin && ./migration.bin

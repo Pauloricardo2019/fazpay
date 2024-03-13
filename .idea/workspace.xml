@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="10ca0d82-9c76-4b45-8910-d21fed4d3eee" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adapter/database/module.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/constants/login_error.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/constants/token_error.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/constants/user_error.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/dto/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/ci.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kickoff-go.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/config/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/adapter/config/handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/database/repository/base.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/base.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/database/repository/base_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/database/repository/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/adapter/database/sql/database.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/database/repository/generic.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/database/repository/interface/repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/interface/repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/database/repository/migrations/202211100541_create_users_table.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/migrations/202403071143_create_users_table.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/database/repository/migrations/202211122353_create_tokens_table.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/migrations/202403071144_create_tokens_table.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/database/repository/migrations/migrations.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/migrations/migrations.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/database/repository/migrator.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/migrator.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/database/repository/module.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/module.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/database/repository/token.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/token.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/database/repository/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/log/interface/logger.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/log/logger.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/log/logger_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/log/module.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/web/rest/controller/health_check.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/controller/health_check.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/web/rest/controller/init_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/controller/init_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/web/rest/controller/interface/controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/controller/interface/controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/web/rest/controller/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/controller/login.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/web/rest/controller/module.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/controller/module.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/web/rest/controller/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/controller/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/web/rest/middleware/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/middleware/auth.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/web/rest/middleware/interface/middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/middleware/interface/middleware.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/web/rest/middleware/log.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/middleware/log.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/web/rest/middleware/module.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/middleware/module.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/web/rest/middleware/tracking.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/web/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/adapter/web/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/api/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/migration/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/migration/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs.go" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docs.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dto/dto_generalized.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dto/error.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/dto/error.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dto/health_check.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/dto/health_check.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dto/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/dto/login.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dto/user.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dto/validate_token.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/dto/validate_token.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/bootstrap/module.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/bootstrap/module.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/constants/errors.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/facade/interface/facade.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/facade/interface/facade.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/facade/security.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/facade/security.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/facade/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/facade/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/model/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/model/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/model/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/service/interface/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/service/interface/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/service/token.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/service/token.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/service/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/service/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing/api_client.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing/gda_api_suite_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing/setup.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing/user_test.go" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file:///snap/go/10553" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2dMV6v3an5aWS5aBTp5zGNpy83l" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;Go Build.go build github.com/Pauloricardo2019/teste_fazpay/cmd/api.executor&quot;: &quot;Debug&quot;,
+    &quot;Go Build.go build github.com/Pauloricardo2019/teste_fazpay/cmd/migration.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/paulo/Documentos/Pessoais/stone_teste&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/internal" />
+      <recent name="$PROJECT_DIR$/adapter/database/sql" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Go Build.go build github.com/Pauloricardo2019/teste_fazpay/cmd/api">
+    <configuration name="go build github.com/Pauloricardo2019/teste_fazpay/cmd/api" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="teste_fazpay" />
+      <working_directory value="$PROJECT_DIR$" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+          <ENTRY IS_ENABLED="false" PARSER="env" IS_EXECUTABLE="false" PATH="dev.env" />
+        </ENTRIES>
+      </EXTENSION>
+      <kind value="PACKAGE" />
+      <package value="github.com/Pauloricardo2019/teste_fazpay/cmd/api" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/cmd/api/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build github.com/Pauloricardo2019/teste_fazpay/cmd/migration" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="teste_fazpay" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/Pauloricardo2019/teste_fazpay/cmd/migration" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/cmd/migration/main.go" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Go Build.go build github.com/Pauloricardo2019/teste_fazpay/cmd/api" />
+      <item itemvalue="Go Build.go build github.com/Pauloricardo2019/teste_fazpay/cmd/migration" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build github.com/Pauloricardo2019/teste_fazpay/cmd/migration" />
+        <item itemvalue="Go Build.go build github.com/Pauloricardo2019/teste_fazpay/cmd/api" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-gosdk-2946fb9b3188-155fe4b6e3a0-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-233.14808.20" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/internal/repository/migrator.go</url>
+          <line>32</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$USER_HOME$/go/pkg/mod/github.com/go-gormigrate/gormigrate/v2@v2.1.1/gormigrate.go</url>
+          <line>365</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/internal/service/user.go</url>
+          <line>87</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/cmd/api/main.go</url>
+          <line>38</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/internal/controller/login.go</url>
+          <line>35</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/internal/repository/user.go</url>
+          <line>94</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/internal/controller/user.go</url>
+          <line>70</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/internal/controller/user.go</url>
+          <line>105</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

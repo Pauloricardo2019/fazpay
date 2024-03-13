@@ -2,10 +2,10 @@ package facade
 
 import (
 	"context"
-	"kickoff/dto"
-	"kickoff/internal/constants"
-	facadeIntf "kickoff/internal/facade/interface"
-	service "kickoff/internal/service/interface"
+	"github.com/Pauloricardo2019/teste_fazpay/internal/constants"
+	"github.com/Pauloricardo2019/teste_fazpay/internal/dto"
+	facadeIntf "github.com/Pauloricardo2019/teste_fazpay/internal/facade/interface"
+	service "github.com/Pauloricardo2019/teste_fazpay/internal/service/interface"
 )
 
 type UserFacade struct {
@@ -20,8 +20,7 @@ func NewUserFacade(
 	}
 }
 
-// CreateUser requests the service layer to create a new user.
-func (u *UserFacade) CreateUser(ctx context.Context, createUserRequestDTO *dto.CreateUserRequest) (*dto.CreateResponse, error) {
+func (u *UserFacade) CreateUser(ctx context.Context, createUserRequestDTO *dto.CreateUserRequest) (*dto.CreateUserResponse, error) {
 	user := createUserRequestDTO.ParseToUserObject()
 
 	createdUser, err := u.userService.Create(ctx, user)
@@ -29,14 +28,13 @@ func (u *UserFacade) CreateUser(ctx context.Context, createUserRequestDTO *dto.C
 		return nil, err
 	}
 
-	createUserResponse := &dto.CreateResponse{}
+	createUserResponse := &dto.CreateUserResponse{}
 	createUserResponse.ID = createdUser.ID
 
 	return createUserResponse, nil
 }
 
-// GetByIdUser requests the service layer to get a user.
-func (u *UserFacade) GetByIdUser(ctx context.Context, id uint64) (*dto.GetUserResponse, error) {
+func (u *UserFacade) GetByIdUser(ctx context.Context, id uint64) (*dto.GetUserByIDResponse, error) {
 
 	found, user, err := u.userService.GetById(ctx, id)
 	if err != nil {
@@ -47,13 +45,12 @@ func (u *UserFacade) GetByIdUser(ctx context.Context, id uint64) (*dto.GetUserRe
 		return nil, constants.ErrorUserNotFound
 	}
 
-	getByIdUserResponse := &dto.GetUserResponse{}
+	getByIdUserResponse := &dto.GetUserByIDResponse{}
 	getByIdUserResponse.ParseFromUserObject(user)
 
 	return getByIdUserResponse, nil
 }
 
-// UpdateUser requests the service layer to update a user.
 func (u *UserFacade) UpdateUser(ctx context.Context, id uint64, updateUserRequest *dto.UpdateUserRequest) error {
 
 	updateUserRequest.ID = id
@@ -65,7 +62,6 @@ func (u *UserFacade) UpdateUser(ctx context.Context, id uint64, updateUserReques
 	return nil
 }
 
-// DeleteUser requests the service layer to delete a user.
 func (u *UserFacade) DeleteUser(ctx context.Context, id uint64) error {
 
 	if err := u.userService.Delete(ctx, id); err != nil {

@@ -2,8 +2,8 @@ package config
 
 import (
 	"fmt"
+	"github.com/Pauloricardo2019/teste_fazpay/internal/model"
 	"github.com/joho/godotenv"
-	"kickoff/internal/model"
 	"os"
 	"strconv"
 	"sync"
@@ -22,10 +22,19 @@ func GetConfig() *model.Config {
 		}
 
 		config = &model.Config{
-			Environment:  os.Getenv("ENV"),
-			DbConnString: os.Getenv("DB_CONNSTRING"),
-			BasePath:     os.Getenv("BASE_PATH"),
+			Environment: os.Getenv("ENV"),
+			BasePath:    os.Getenv("BASE_PATH"),
 		}
+
+		config.DBConfig = model.DBConfig{
+			Username: os.Getenv("DB_USERNAME"),
+			Password: os.Getenv("DB_PASSWORD"),
+			Host:     os.Getenv("DB_HOST"),
+			Port:     os.Getenv("DB_PORT"),
+			Name:     os.Getenv("DB_NAME"),
+		}
+
+		fmt.Println("Conn string: ", config.DBConfig.GetConnString())
 
 		restPort := os.Getenv("PORT")
 

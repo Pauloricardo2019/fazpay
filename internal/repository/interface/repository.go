@@ -1,23 +1,22 @@
-package serviceIntf
+package repositoryIntf
 
 import (
 	"context"
 	"github.com/Pauloricardo2019/teste_fazpay/internal/model"
 )
 
-type SaveBaseService interface {
+type DBRepository interface {
 	BeginTransaction(ctx context.Context) (context.Context, error)
 	RollbackTransaction(ctx context.Context) error
 	CommitTransaction(ctx context.Context) error
 }
 
-type TransactionHandler func(ctx context.Context) error
-
-type TransactionService interface {
-	DoWork(ctx context.Context, transactionHandler TransactionHandler) error
+type TokenRepository interface {
+	Create(ctx context.Context, token *model.Token) (*model.Token, error)
+	GetByValue(ctx context.Context, value string) (bool, *model.Token, error)
 }
 
-type UserService interface {
+type UserRepository interface {
 	Create(ctx context.Context, user *model.User) (*model.User, error)
 	GetById(ctx context.Context, id uint64) (bool, *model.User, error)
 	GetByEmailAndPassword(ctx context.Context, user *model.User) (bool, *model.User, error)
@@ -25,7 +24,6 @@ type UserService interface {
 	Delete(ctx context.Context, id uint64) error
 }
 
-type TokenService interface {
-	CreateForLogin(ctx context.Context, user *model.User) (*model.Token, error)
-	GetByValue(ctx context.Context, value string) (bool, *model.Token, error)
+type Migrator interface {
+	ExecuteMigrations(ctx context.Context) error
 }

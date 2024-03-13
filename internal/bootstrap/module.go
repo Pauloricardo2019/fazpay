@@ -1,15 +1,15 @@
 package bootstrap
 
 import (
+	"github.com/Pauloricardo2019/teste_fazpay/adapter/config"
+	"github.com/Pauloricardo2019/teste_fazpay/adapter/database"
+	"github.com/Pauloricardo2019/teste_fazpay/adapter/web"
+	"github.com/Pauloricardo2019/teste_fazpay/internal/controller"
+	"github.com/Pauloricardo2019/teste_fazpay/internal/facade"
+	"github.com/Pauloricardo2019/teste_fazpay/internal/middleware"
+	"github.com/Pauloricardo2019/teste_fazpay/internal/repository"
+	"github.com/Pauloricardo2019/teste_fazpay/internal/service"
 	"go.uber.org/fx"
-	"kickoff/adapter/config"
-	"kickoff/adapter/database/repository"
-	"kickoff/adapter/log"
-	"kickoff/adapter/web"
-	"kickoff/adapter/web/rest/controller"
-	"kickoff/adapter/web/rest/middleware"
-	"kickoff/internal/facade"
-	"kickoff/internal/service"
 )
 
 func GetModule() fx.Option {
@@ -17,7 +17,7 @@ func GetModule() fx.Option {
 	return fx.Module(
 		"Bootstrap",
 		config.GetModule(),
-		log.GetModule(),
+		database.GetModule(),
 		repository.GetModule(),
 		service.GetModule(),
 		facade.GetModule(),

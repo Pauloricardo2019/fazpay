@@ -1,72 +1,80 @@
 definitions:
-  dto.CreateResponse:
-    properties:
-      id:
-        type: integer
-    type: object
-  dto.CreateUserRequest:
+  CreateUserRequest:
     properties:
       email:
         type: string
-      full_name:
+      first_name:
         type: string
-      login:
+      last_name:
         type: string
       password:
         type: string
     type: object
-  dto.Error:
+  CreateUserResponse:
+    properties:
+      id:
+        type: integer
+    type: object
+  Error:
     properties:
       message:
         type: string
     type: object
-  dto.GetUserResponse:
+  GetUserByIDResponse:
     properties:
-      create_at:
+      created_at:
         type: string
       email:
         type: string
-      full_name:
+      first_name:
         type: string
       id:
         type: integer
-      login:
+      last_name:
+        type: string
+      updated_at:
         type: string
     type: object
-  dto.HealthCheckResponse:
+  HealthCheckResponse:
     properties:
       status:
         type: string
     type: object
-  dto.LoginRequest:
+  LoginRequest:
     properties:
-      login:
+      email:
         type: string
       password:
         type: string
     type: object
-  dto.LoginResponse:
+  LoginResponse:
     properties:
       email:
         type: string
-      full_name:
+      first_name:
+        type: string
+      last_name:
         type: string
       token:
         type: string
       user_id:
         type: integer
     type: object
-  dto.UpdateUserRequest:
+  UpdateUserRequest:
     properties:
-      create_at:
+      created_at:
         type: string
       email:
         type: string
-      full_name:
+      first_name:
         type: string
       id:
         type: integer
-      login:
+      last_name:
+        type: string
+      password:
+        type: string
+      updated_at:
         type: string
     type: object
 info:
@@ -90,7 +98,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/dto.HealthCheckResponse'
+            $ref: '#/definitions/HealthCheckResponse'
       summary: '- Health-Check'
       tags:
       - Health-Check
@@ -105,22 +113,22 @@ paths:
         name: loginRequest
         required: true
         schema:
-          $ref: '#/definitions/dto.LoginRequest'
+          $ref: '#/definitions/LoginRequest'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/dto.LoginResponse'
+            $ref: '#/definitions/LoginResponse'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/dto.Error'
+            $ref: '#/definitions/Error'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/dto.Error'
+            $ref: '#/definitions/Error'
       security:
       - ApiKeyAuth: []
       summary: '- login user'
@@ -137,14 +145,14 @@ paths:
         name: User
         required: true
         schema:
-          $ref: '#/definitions/dto.CreateUserRequest'
+          $ref: '#/definitions/CreateUserRequest'
       produces:
       - application/json
       responses:
         "201":
           description: Created
           schema:
-            $ref: '#/definitions/dto.CreateResponse'
+            $ref: '#/definitions/CreateUserResponse'
       security:
       - ApiKeyAuth: []
       summary: Create user
@@ -187,7 +195,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/dto.GetUserResponse'
+            $ref: '#/definitions/GetUserByIDResponse'
       security:
       - ApiKeyAuth: []
       summary: Get user
@@ -208,7 +216,7 @@ paths:
         name: User
         required: true
         schema:
-          $ref: '#/definitions/dto.UpdateUserRequest'
+          $ref: '#/definitions/UpdateUserRequest'
       produces:
       - application/json
       responses:

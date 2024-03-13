@@ -2,28 +2,26 @@ package main
 
 import (
 	"context"
+	"github.com/Pauloricardo2019/teste_fazpay/adapter/config"
+	"github.com/Pauloricardo2019/teste_fazpay/adapter/database"
+	"github.com/Pauloricardo2019/teste_fazpay/internal/repository"
+	repositoryIntf "github.com/Pauloricardo2019/teste_fazpay/internal/repository/interface"
 	"go.uber.org/fx"
-	"kickoff/adapter/config"
-	"kickoff/adapter/database/repository"
-	repositoryIntf "kickoff/adapter/database/repository/interface"
-	"kickoff/adapter/log"
-	logIntf "kickoff/adapter/log/interface"
 	"os"
 )
 
 func main() {
 	app := fx.New(
 		config.GetModule(),
-		log.GetModule(),
+		database.GetModule(),
 		repository.GetModule(),
-		fx.Invoke(func(migrator repositoryIntf.Migrator, logger logIntf.Logger) {
+
+		fx.Invoke(func(migrator repositoryIntf.Migrator) {
 			ctx := context.Background()
-			logger.Info(ctx, "Starting migration program")
 
 			err := migrator.ExecuteMigrations(ctx)
 			if err != nil {
-				logger.Error(ctx, "error running migrations",
-					"error", err.Error())
+				panic(err)
 			}
 			os.Exit(0)
 		}),

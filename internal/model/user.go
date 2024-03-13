@@ -7,12 +7,11 @@ import (
 
 type User struct {
 	ID             uint64    `gorm:"primaryKey; column:id"`
-	FullName       string    `gorm:"column:full_name"`
-	Email          string    `gorm:"column:email"`
-	Login          string    `gorm:"column:login"`
+	FirstName      string    `validate:"required" gorm:"column:first_name"`
+	LastName       string    `validate:"required" gorm:"column:last_name" `
+	Email          string    `validate:"required" gorm:"column:email" `
 	HashedPassword string    `gorm:"column:hashed_password"`
 	Password       string    `gorm:"-"`
-	LastLogin      time.Time `gorm:"column:last_login"`
 	CreatedAt      time.Time `gorm:"autoCreateTime; column:created_at"`
 	UpdatedAt      time.Time `gorm:"autoUpdateTime:milli; column:updated_at"`
 }
