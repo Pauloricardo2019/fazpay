@@ -100,6 +100,10 @@ func (u *UserService) validateUser(user *model.User) error {
 	return nil
 }
 
+func (u *UserService) GetByEmail(ctx context.Context, email string) (bool, *model.User, error) {
+	return u.userRepository.GetByEmail(ctx, email)
+}
+
 func (u *UserService) Create(ctx context.Context, user *model.User) (*model.User, error) {
 	if err := u.validateUser(user); err != nil {
 		return nil, err

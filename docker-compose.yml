@@ -2,6 +2,7 @@ version: '3.9'
 
 services:
   mysql:
+    container_name: mysql_fazpay
     image: mysql:latest
     restart: always
     environment:
@@ -10,10 +11,19 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: password
     ports:
-      - 3306:3306
+      - "3306:3306"
     networks:
-      - fazpay-bridge
+      - user-bridge
+
+  api:
+    container_name: api_fazpay
+    build: .
+    restart: always
+    ports:
+      - "9090:9090"
+    networks:
+      - user-bridge
 
 networks:
-  fazpay-bridge:
-    name: fazpay-bridge
+  user-bridge:
+    name: user-bridge

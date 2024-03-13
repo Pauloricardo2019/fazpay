@@ -22,6 +22,7 @@ type UserRepository interface {
 	GetByEmailAndPassword(ctx context.Context, user *model.User) (bool, *model.User, error)
 	Update(ctx context.Context, user *model.User) error
 	Delete(ctx context.Context, id uint64) error
+	GetByEmail(ctx context.Context, email string) (bool, *model.User, error)
 }
 
 type Migrator interface {

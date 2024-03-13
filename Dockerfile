@@ -1,4 +1,4 @@
-FROM golang:latest as builder
+FROM golang:1.21-alpine as builder
 
 WORKDIR /app
 
@@ -13,21 +13,17 @@ RUN go build -a -tags netgo \
     -ldflags '-w -extldflags "-static"'\
     -o /app/api.bin ./cmd/api/main.go
 
-RUN go build -a -tags netgo \
-    -ldflags '-w -extldflags "-static"'\
-    -o /app/migration.bin ./cmd/migration/main.go
-
 FROM alpine:3.15 as release
 
 RUN apk add --no-cache bash \
     && adduser --disabled-password --gecos "" --no-create-home app
 
 COPY --from=builder --chown=app /app/*.bin /app/
-COPY --from=builder --chown=app /app/*.env /app/
+COPY --from=builder --chown=app /app/.env /app/
 
 
 WORKDIR /app
 
 USER app
 
-CMD ./api.bin && ./migration.bin
+CMD ./api.bin

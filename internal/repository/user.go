@@ -51,6 +51,24 @@ func (u *UserRepository) GetById(ctx context.Context, id uint64) (bool, *model.U
 	return true, &user, nil
 }
 
+func (u *UserRepository) GetByEmail(ctx context.Context, email string) (bool, *model.User, error) {
+	conn, err := u.GetConnection(ctx)
+	if err != nil {
+		return false, nil, err
+	}
+
+	user := model.User{}
+
+	if err = conn.Where("email = ?", email).First(&user).Error; err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return false, nil, nil
+		}
+		return false, nil, err
+	}
+
+	return true, &user, nil
+}
+
 func (u *UserRepository) Update(ctx context.Context, user *model.User) error {
 	conn, err := u.GetConnection(ctx)
 	if err != nil {

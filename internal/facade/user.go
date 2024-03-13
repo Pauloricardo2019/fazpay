@@ -23,6 +23,15 @@ func NewUserFacade(
 func (u *UserFacade) CreateUser(ctx context.Context, createUserRequestDTO *dto.CreateUserRequest) (*dto.CreateUserResponse, error) {
 	user := createUserRequestDTO.ParseToUserObject()
 
+	found, _, err := u.userService.GetByEmail(ctx, user.Email)
+	if err != nil {
+		return nil, err
+	}
+
+	if found {
+		return nil, constants.ErrorEmailAlreadyExists
+	}
+
 	createdUser, err := u.userService.Create(ctx, user)
 	if err != nil {
 		return nil, err
@@ -52,9 +61,17 @@ func (u *UserFacade) GetByIdUser(ctx context.Context, id uint64) (*dto.GetUserBy
 }
 
 func (u *UserFacade) UpdateUser(ctx context.Context, id uint64, updateUserRequest *dto.UpdateUserRequest) error {
-
 	updateUserRequest.ID = id
 	updateUser := updateUserRequest.ParseToUserObject()
+
+	found, _, err := u.userService.GetByEmail(ctx, updateUser.Email)
+	if err != nil {
+		return err
+	}
+
+	if found {
+		return constants.ErrorEmailAlreadyExists
+	}
 
 	if err := u.userService.Update(ctx, updateUser); err != nil {
 		return err

@@ -7,6 +7,7 @@ import (
 	repositoryIntf "github.com/Pauloricardo2019/teste_fazpay/internal/repository/interface"
 	"go.uber.org/fx"
 	"gorm.io/gorm"
+	"log"
 )
 
 // @contact.name				API Support
@@ -25,6 +26,11 @@ func main() {
 		fx.Invoke(func(server web.ServerRest, db *gorm.DB, migrator repositoryIntf.Migrator, lc fx.Lifecycle) {
 			lc.Append(fx.Hook{
 				OnStart: func(ctx context.Context) error {
+
+					if err := migrator.ExecuteMigrations(ctx); err != nil {
+						log.Fatal(err.Error())
+					}
+
 					go server.StartListener()
 					return nil
 				},
