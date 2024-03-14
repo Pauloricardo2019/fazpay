@@ -1,6 +1,7 @@
 package facade
 
 import (
+	loggerIntf "github.com/Pauloricardo2019/teste_fazpay/adapter/logger/interface"
 	"github.com/Pauloricardo2019/teste_fazpay/internal/constants"
 	"github.com/Pauloricardo2019/teste_fazpay/internal/dto"
 	facadeIntf "github.com/Pauloricardo2019/teste_fazpay/internal/facade/interface"
@@ -12,15 +13,18 @@ import (
 type SecurityFacade struct {
 	tokenService service.TokenService
 	userService  service.UserService
+	logger       loggerIntf.LoggerInterface
 }
 
 func NewSecurityFacade(
 	tokenService service.TokenService,
 	userService service.UserService,
+	logger loggerIntf.LoggerInterface,
 ) facadeIntf.SecurityFacade {
 	return &SecurityFacade{
 		tokenService: tokenService,
 		userService:  userService,
+		logger:       logger,
 	}
 }
 
@@ -59,27 +63,33 @@ func (s *SecurityFacade) validateExpiresAt(expiresAt time.Time) bool {
 }
 
 func (s *SecurityFacade) Login(ctx context.Context, loginRequest *dto.LoginRequest) (*dto.LoginResponse, error) {
+	s.logger.LoggerInfo(ctx, "Login", "facade")
 	loginUserObject := loginRequest.ConvertToVO()
 
 	if loginRequest.Email == "" {
+		s.logger.LoggerError(ctx, constants.ErrorLoginValueEmpty, "facade")
 		return nil, constants.ErrorLoginValueEmpty
 	}
 
 	if loginRequest.Password == "" {
+		s.logger.LoggerError(ctx, constants.ErrorLoginPassEmpty, "facade")
 		return nil, constants.ErrorLoginPassEmpty
 	}
 
 	found, userFound, err := s.userService.GetByEmailAndPassword(ctx, loginUserObject)
 	if err != nil {
+		s.logger.LoggerError(ctx, err, "facade")
 		return nil, err
 	}
 
 	if !found {
+		s.logger.LoggerError(ctx, constants.ErrorUserNotFound, "facade")
 		return nil, constants.ErrorUserNotFound
 	}
 
 	tokenCreated, err := s.tokenService.CreateForLogin(ctx, userFound)
 	if err != nil {
+		s.logger.LoggerError(ctx, err, "facade")
 		return nil, err
 	}
 

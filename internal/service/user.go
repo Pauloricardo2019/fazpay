@@ -5,6 +5,7 @@ import (
 	"crypto/sha256"
 	"fmt"
 	emailverifier "github.com/AfterShip/email-verifier"
+	loggerIntf "github.com/Pauloricardo2019/teste_fazpay/adapter/logger/interface"
 	"github.com/Pauloricardo2019/teste_fazpay/internal/constants"
 	"github.com/Pauloricardo2019/teste_fazpay/internal/model"
 	"github.com/Pauloricardo2019/teste_fazpay/internal/repository/interface"
@@ -14,11 +15,13 @@ import (
 
 type UserService struct {
 	userRepository repositoryIntf.UserRepository
+	logger         loggerIntf.LoggerInterface
 }
 
-func NewUserService(userRepository repositoryIntf.UserRepository) serviceIntf.UserService {
+func NewUserService(userRepository repositoryIntf.UserRepository, logger loggerIntf.LoggerInterface) serviceIntf.UserService {
 	return &UserService{
 		userRepository: userRepository,
+		logger:         logger,
 	}
 }
 
@@ -84,7 +87,8 @@ func (u *UserService) validateEmail(email string) error {
 	return nil
 }
 
-func (u *UserService) validateUser(user *model.User) error {
+func (u *UserService) validateUser(ctx context.Context, user *model.User) error {
+	u.logger.LoggerInfo(ctx, "validateUser", "service")
 	if err := user.Validate(); err != nil {
 		return err
 	}
@@ -101,15 +105,18 @@ func (u *UserService) validateUser(user *model.User) error {
 }
 
 func (u *UserService) GetByEmail(ctx context.Context, email string) (bool, *model.User, error) {
+	u.logger.LoggerInfo(ctx, "GetByEmail", "service")
 	return u.userRepository.GetByEmail(ctx, email)
 }
 
 func (u *UserService) Create(ctx context.Context, user *model.User) (*model.User, error) {
-	if err := u.validateUser(user); err != nil {
+	u.logger.LoggerInfo(ctx, "Create", "service")
+	if err := u.validateUser(ctx, user); err != nil {
+		u.logger.LoggerError(ctx, err, "service")
 		return nil, err
 	}
 
-	user = encryptAndClearingPassword(user)
+	user = u.encryptAndClearingPassword(ctx, user)
 
 	return u.userRepository.Create(ctx, user)
 }
@@ -120,10 +127,10 @@ func (u *UserService) GetById(ctx context.Context, id uint64) (bool, *model.User
 
 func (u *UserService) Update(ctx context.Context, user *model.User) error {
 
-	if err := u.validateUser(user); err != nil {
+	if err := u.validateUser(ctx, user); err != nil {
 		return err
 	}
-	user = encryptAndClearingPassword(user)
+	user = u.encryptAndClearingPassword(ctx, user)
 	return u.userRepository.Update(ctx, user)
 }
 
@@ -132,11 +139,12 @@ func (u *UserService) Delete(ctx context.Context, id uint64) error {
 }
 
 func (u *UserService) GetByEmailAndPassword(ctx context.Context, user *model.User) (bool, *model.User, error) {
-	user = encryptAndClearingPassword(user)
+	user = u.encryptAndClearingPassword(ctx, user)
 	return u.userRepository.GetByEmailAndPassword(ctx, user)
 }
 
-func encryptAndClearingPassword(usuario *model.User) *model.User {
+func (u *UserService) encryptAndClearingPassword(ctx context.Context, usuario *model.User) *model.User {
+	u.logger.LoggerInfo(ctx, "encryptAndClearingPassword", "service")
 	sum := sha256.Sum256([]byte(usuario.Password))
 	usuario.HashedPassword = fmt.Sprintf("%x", sum)
 	usuario.Password = ""

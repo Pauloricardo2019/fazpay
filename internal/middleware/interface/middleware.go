@@ -6,10 +6,6 @@ type AuthMiddleware interface {
 	Auth() gin.HandlerFunc
 }
 
-type LogMiddleware interface {
-	LogRequest() gin.HandlerFunc
-}
-
-type TrackingMiddleware interface {
+type TrackMiddleware interface {
 	TrackRequest() gin.HandlerFunc
 }

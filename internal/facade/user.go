@@ -2,6 +2,7 @@ package facade
 
 import (
 	"context"
+	loggerIntf "github.com/Pauloricardo2019/teste_fazpay/adapter/logger/interface"
 	"github.com/Pauloricardo2019/teste_fazpay/internal/constants"
 	"github.com/Pauloricardo2019/teste_fazpay/internal/dto"
 	facadeIntf "github.com/Pauloricardo2019/teste_fazpay/internal/facade/interface"
@@ -10,33 +11,40 @@ import (
 
 type UserFacade struct {
 	userService service.UserService
+	logger      loggerIntf.LoggerInterface
 }
 
 func NewUserFacade(
 	userService service.UserService,
+	logger loggerIntf.LoggerInterface,
 ) facadeIntf.UserFacade {
 	return &UserFacade{
 		userService: userService,
+		logger:      logger,
 	}
 }
 
 func (u *UserFacade) CreateUser(ctx context.Context, createUserRequestDTO *dto.CreateUserRequest) (*dto.CreateUserResponse, error) {
+	u.logger.LoggerInfo(ctx, "CreateUser", "facade")
 	user := createUserRequestDTO.ParseToUserObject()
 
 	found, _, err := u.userService.GetByEmail(ctx, user.Email)
 	if err != nil {
+		u.logger.LoggerError(ctx, err, "facade")
 		return nil, err
 	}
 
 	if found {
+		u.logger.LoggerWarn(ctx, constants.ErrorEmailAlreadyExists.Error(), "facade")
 		return nil, constants.ErrorEmailAlreadyExists
 	}
 
 	createdUser, err := u.userService.Create(ctx, user)
 	if err != nil {
+		u.logger.LoggerError(ctx, err, "facade")
 		return nil, err
 	}
-
+	u.logger.LoggerInfo(ctx, "user created", "facade")
 	createUserResponse := &dto.CreateUserResponse{}
 	createUserResponse.ID = createdUser.ID
 

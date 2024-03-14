@@ -3,6 +3,7 @@ package repository
 import (
 	"context"
 	"errors"
+	loggerIntf "github.com/Pauloricardo2019/teste_fazpay/adapter/logger/interface"
 	"github.com/Pauloricardo2019/teste_fazpay/internal/model"
 	repositoryIntf "github.com/Pauloricardo2019/teste_fazpay/internal/repository/interface"
 	"gorm.io/gorm"
@@ -11,16 +12,19 @@ import (
 
 type UserRepository struct {
 	*BaseRepository
+	logger loggerIntf.LoggerInterface
 }
 
-func NewUserRepository(db *gorm.DB) repositoryIntf.UserRepository {
+func NewUserRepository(db *gorm.DB, logger loggerIntf.LoggerInterface) repositoryIntf.UserRepository {
 	baseRepo := NewBaseRepository(db)
 	return &UserRepository{
 		baseRepo,
+		logger,
 	}
 }
 
 func (u *UserRepository) Create(ctx context.Context, user *model.User) (*model.User, error) {
+	u.logger.LoggerInfo(ctx, "Create", "repository")
 	conn, err := u.GetConnection(ctx)
 	if err != nil {
 		return nil, err
@@ -52,6 +56,7 @@ func (u *UserRepository) GetById(ctx context.Context, id uint64) (bool, *model.U
 }
 
 func (u *UserRepository) GetByEmail(ctx context.Context, email string) (bool, *model.User, error) {
+	u.logger.LoggerInfo(ctx, "GetByEmail", "repository")
 	conn, err := u.GetConnection(ctx)
 	if err != nil {
 		return false, nil, err

@@ -8,7 +8,7 @@ func GetModule() fx.Option {
 		"Middleware",
 		fx.Provide(
 			NewAuthMiddleware,
-			NewLogMiddleware,
+			NewTrackMiddleware,
 		),
 	)
 

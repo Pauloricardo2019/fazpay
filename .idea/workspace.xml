@@ -5,8 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="10ca0d82-9c76-4b45-8910-d21fed4d3eee" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/adapter/logger/handler.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adapter/logger/interface/logger.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adapter/logger/module.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/middleware/track.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/web/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/adapter/web/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/bootstrap/module.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/bootstrap/module.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/controller/health_check.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/controller/health_check.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/controller/init_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/controller/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/controller/login.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/controller/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/controller/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/facade/security.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/facade/security.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/facade/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/facade/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/middleware/interface/middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/middleware/interface/middleware.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/middleware/log.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/middleware/module.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/middleware/module.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/token.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/token.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/service/token.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/service/token.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/service/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/service/user.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,26 +95,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;Go Build.go build github.com/Pauloricardo2019/teste_fazpay/cmd/api.executor&quot;: &quot;Debug&quot;,
-    &quot;Go Build.go build github.com/Pauloricardo2019/teste_fazpay/cmd/migration.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/paulo/Documentos/Pessoais/stone_teste&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "Go Build.go build github.com/Pauloricardo2019/teste_fazpay/cmd/api.executor": "Run",
+    "Go Build.go build github.com/Pauloricardo2019/teste_fazpay/cmd/migration.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "/home/paulo/Documentos/Pessoais/stone_teste",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/internal" />
@@ -157,18 +180,13 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/internal/repository/migrator.go</url>
-          <line>32</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$USER_HOME$/go/pkg/mod/github.com/go-gormigrate/gormigrate/v2@v2.1.1/gormigrate.go</url>
           <line>365</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/internal/service/user.go</url>
-          <line>87</line>
+          <line>91</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
@@ -177,29 +195,19 @@
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/internal/controller/login.go</url>
-          <line>35</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/internal/repository/user.go</url>
-          <line>112</line>
+          <line>117</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/internal/controller/user.go</url>
-          <line>70</line>
+          <line>88</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/internal/controller/user.go</url>
-          <line>105</line>
+          <line>123</line>
           <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/cmd/api/main.go</url>
-          <line>29</line>
-          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

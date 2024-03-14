@@ -3,6 +3,7 @@ package bootstrap
 import (
 	"github.com/Pauloricardo2019/teste_fazpay/adapter/config"
 	"github.com/Pauloricardo2019/teste_fazpay/adapter/database"
+	"github.com/Pauloricardo2019/teste_fazpay/adapter/logger"
 	"github.com/Pauloricardo2019/teste_fazpay/adapter/web"
 	"github.com/Pauloricardo2019/teste_fazpay/internal/controller"
 	"github.com/Pauloricardo2019/teste_fazpay/internal/facade"
@@ -17,6 +18,7 @@ func GetModule() fx.Option {
 	return fx.Module(
 		"Bootstrap",
 		config.GetModule(),
+		logger.GetModule(),
 		database.GetModule(),
 		repository.GetModule(),
 		service.GetModule(),
