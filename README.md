@@ -33,6 +33,24 @@ Dicas para fazer os testes, siga estas etapas:
 <Pronto, agora você está autenticado no sistema.>
 ```
 
+## 📐 Arquitetura
+
+```
+<Arquitetura: Ports and Adapters (Arquitetura Hexagonal)>
+<Design-pattern: Facade>
+```
+
+## ℹ️ Informações sobre o projeto
+
+```
+<Bibliotecas: [gorm.io/gorm; github.com/uber-go/fx; github.com/uber-go/zap; github.com/gin-gonic/gin; github.com/swaggo/gin-swagger]>
+<gorm.io/gorm: ORM para persistir dados no banco de dados>
+<github.com/uber-go/fx: Biblioteca para abstrair injeção de dependencias em camadas>
+<github.com/uber-go/zap: Biblioteca para apresentar os logs da aplicação>
+<github.com/gin-gonic/gin: Framework web>
+<github.com/swaggo/gin-swagger: Biblioteca para criar e gerar a documentação dos endpoints>
+```
+
 ## 🤝 Colaboradores
 
 Agradecemos às seguintes pessoas que contribuíram para este projeto:
