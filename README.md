@@ -1,6 +1,6 @@
 # FAZPAY-API
 
-<img src="imagem.png" alt="Exemplo imagem">
+<img src="swagger.png" alt="Swagger image">
 
 > Api para gerenciamento de usuários com a feature de login, cadastre-se faça o login e teste as funcionalidades da api.
 
@@ -31,7 +31,7 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
   <tr>
     <td align="center">
       <a href="#" title="defina o titulo do link">
-        <img src="https://avatars3.githubusercontent.com/u/31936044" width="100px;" alt="Foto do Paulo Ricardo no GitHub"/><br>
+        <img src="[https://avatars3.githubusercontent.com/u/31936044](https://avatars.githubusercontent.com/u/49963863?s=400&u=7bf8a3c9f10fb27b8f31a472cfee6e1f2cb2e2af&v=4)" width="100px;" alt="Foto do Paulo Ricardo no GitHub"/><br>
         <sub>
           <b>Paulo Ricardo</b>
         </sub>
