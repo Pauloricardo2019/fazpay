@@ -2,6 +2,7 @@ package repository
 
 import (
 	"context"
+	loggerIntf "github.com/Pauloricardo2019/teste_fazpay/adapter/logger/interface"
 	"github.com/Pauloricardo2019/teste_fazpay/internal/model"
 	repositoryIntf "github.com/Pauloricardo2019/teste_fazpay/internal/repository/interface"
 	"github.com/pkg/errors"
@@ -10,16 +11,19 @@ import (
 
 type TokenRepository struct {
 	*BaseRepository
+	logger loggerIntf.LoggerInterface
 }
 
-func NewTokenRepository(db *gorm.DB) repositoryIntf.TokenRepository {
+func NewTokenRepository(db *gorm.DB, logger loggerIntf.LoggerInterface) repositoryIntf.TokenRepository {
 	baseRepo := NewBaseRepository(db)
 	return &TokenRepository{
 		baseRepo,
+		logger,
 	}
 }
 
 func (u *TokenRepository) Create(ctx context.Context, token *model.Token) (*model.Token, error) {
+	u.logger.LoggerInfo(ctx, "Create", "repository")
 	conn, err := u.GetConnection(ctx)
 	if err != nil {
 		return nil, err
@@ -28,7 +32,7 @@ func (u *TokenRepository) Create(ctx context.Context, token *model.Token) (*mode
 	if err = conn.Create(token).Error; err != nil {
 		return nil, err
 	}
-
+	u.logger.LoggerInfo(ctx, "token created", "repository")
 	return token, nil
 }
 

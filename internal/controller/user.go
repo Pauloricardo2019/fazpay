@@ -1,7 +1,9 @@
 package controller
 
 import (
+	"context"
 	"errors"
+	loggerIntf "github.com/Pauloricardo2019/teste_fazpay/adapter/logger/interface"
 	"github.com/Pauloricardo2019/teste_fazpay/internal/constants"
 	controllerIntf "github.com/Pauloricardo2019/teste_fazpay/internal/controller/interface"
 	"github.com/Pauloricardo2019/teste_fazpay/internal/dto"
@@ -13,12 +15,26 @@ import (
 
 type UserController struct {
 	userFacade facadeIntf.UserFacade
+	logger     loggerIntf.LoggerInterface
 }
 
-func NewUserController(userFacade facadeIntf.UserFacade) controllerIntf.UserController {
+func NewUserController(userFacade facadeIntf.UserFacade, logger loggerIntf.LoggerInterface) controllerIntf.UserController {
 	return &UserController{
 		userFacade: userFacade,
+		logger:     logger,
 	}
+}
+
+func (u *UserController) getContextValues(c *gin.Context) context.Context {
+	requestID, _ := c.Get("request_id")
+	methodRequest, _ := c.Get("method_request")
+	urlRequest, _ := c.Get("url_request")
+
+	ctx := context.WithValue(c.Request.Context(), "request_id", requestID.(string))
+	ctx = context.WithValue(ctx, "method_request", methodRequest.(string))
+	ctx = context.WithValue(ctx, "request_url", urlRequest.(string))
+
+	return ctx
 }
 
 // CreateUser creates a new user
@@ -33,22 +49,24 @@ func NewUserController(userFacade facadeIntf.UserFacade) controllerIntf.UserCont
 // @Router			/v1/user/	[post]
 // @Security		ApiKeyAuth
 func (u *UserController) CreateUser(c *gin.Context) {
-	ctx := c.Request.Context()
-
+	ctx := u.getContextValues(c)
+	u.logger.LoggerInfo(ctx, "CreateUser", "controller")
 	createUserRequestDTO := &dto.CreateUserRequest{}
 
 	err := c.BindJSON(createUserRequestDTO)
 	if err != nil {
+		u.logger.LoggerError(ctx, constants.ErrorParsingId, "controller")
 		c.JSON(http.StatusBadRequest, &dto.Error{Message: constants.ErrorParsingId.Error()})
 		return
 	}
 
 	createUserResponseDTO, err := u.userFacade.CreateUser(ctx, createUserRequestDTO)
 	if err != nil {
+		u.logger.LoggerError(ctx, err, "controller")
 		c.JSON(http.StatusInternalServerError, &dto.Error{Message: err.Error()})
 		return
 	}
-
+	u.logger.LoggerInfo(ctx, "user created", "controller")
 	c.JSON(http.StatusCreated, createUserResponseDTO)
 }
 
@@ -66,10 +84,13 @@ func (u *UserController) CreateUser(c *gin.Context) {
 // @Router			/v1/user/{id}		[get]
 // @Security		ApiKeyAuth
 func (u *UserController) GetByIdUser(c *gin.Context) {
-	ctx := c.Request.Context()
+	ctx := u.getContextValues(c)
+
+	u.logger.LoggerInfo(ctx, "GetByIdUser", "controller")
 
 	id, err := strconv.ParseUint(c.Param("id"), 10, 64)
 	if err != nil {
+		u.logger.LoggerError(ctx, constants.ErrorParsingId, "controller")
 		c.JSON(http.StatusBadRequest, &dto.Error{Message: constants.ErrorParsingId.Error()})
 		return
 	}
@@ -77,13 +98,15 @@ func (u *UserController) GetByIdUser(c *gin.Context) {
 	user, err := u.userFacade.GetByIdUser(ctx, id)
 	if err != nil {
 		if err.Error() == constants.ErrorUserNotFound.Error() {
+			u.logger.LoggerError(ctx, constants.ErrorUserNotFound, "controller")
 			c.JSON(http.StatusNotFound, &dto.Error{Message: constants.ErrorUserNotFound.Error()})
 			return
 		}
+		u.logger.LoggerError(ctx, err, "controller")
 		c.JSON(http.StatusInternalServerError, &dto.Error{Message: err.Error()})
 		return
 	}
-
+	u.logger.LoggerInfo(ctx, "user found", "controller")
 	c.JSON(http.StatusOK, user)
 }
 
@@ -101,7 +124,7 @@ func (u *UserController) GetByIdUser(c *gin.Context) {
 // @Router			/v1/user/{id}	[put]
 // @Security		ApiKeyAuth
 func (u *UserController) UpdateUser(c *gin.Context) {
-	ctx := c.Request.Context()
+	ctx := u.getContextValues(c)
 
 	tokenUserID, found := c.Get("user_id")
 	if !found {
@@ -149,7 +172,7 @@ func (u *UserController) UpdateUser(c *gin.Context) {
 // @Router			/v1/user/{id}		[delete]
 // @Security		ApiKeyAuth
 func (u *UserController) DeleteUser(c *gin.Context) {
-	ctx := c.Request.Context()
+	ctx := u.getContextValues(c)
 
 	tokenUserID, found := c.Get("user_id")
 	if !found {

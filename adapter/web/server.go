@@ -27,7 +27,8 @@ type GlobalControllers struct {
 
 type Middlewares struct {
 	fx.In
-	AuthMiddleware middlewareIntf.AuthMiddleware
+	AuthMiddleware  middlewareIntf.AuthMiddleware
+	TrackMiddleware middlewareIntf.TrackMiddleware
 }
 
 type ServerRest struct {
@@ -94,7 +95,7 @@ func (s *ServerRest) registerRoutes() {
 		}))
 	}
 
-	basePath := s.Engine.Group(s.config.BasePath)
+	basePath := s.Engine.Group(s.config.BasePath, s.middlewares.TrackMiddleware.TrackRequest())
 	{
 		basePath.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
