@@ -21,7 +21,17 @@ Para usar fazpay-api, siga estas etapas:
 <Para testar abra seu navegador e navegue para o link: "http:localhost:9090/swagger/index.html">
 <Agora é só criar seu usuário e usar a api>
 ```
-Adicione comandos de execução e exemplos que você acha que os usuários acharão úteis. Fornece uma referência de opções para pontos de bônus!
+
+## ☕ Dicas para uso
+
+Dicas para fazer os testes, siga estas etapas:
+
+```
+<Quando acessar o swagger, mude o "Schemes" para http>
+<Crie um usuário e faça o login, a request do login irá retornar um json com o valor do token>
+<Suba a pagina e clique em "Authorize", dentro do campo "value" digite "Bearer 'token_value'", coloque o valor do token>
+<Pronto, agora você está autenticado no sistema.>
+```
 
 ## 🤝 Colaboradores
 
@@ -30,7 +40,7 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
 <table>
   <tr>
     <td align="center">
-      <a href="#" title="defina o titulo do link">
+      <a href="https://github.com/Pauloricardo2019" title="Visitar o perfil">
         <img src="https://avatars.githubusercontent.com/u/49963863?s=400" width="100px;" alt="Foto do Paulo Ricardo no GitHub"/><br>
         <sub>
           <b>Paulo Ricardo</b>
