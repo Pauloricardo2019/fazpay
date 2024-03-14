@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="10ca0d82-9c76-4b45-8910-d21fed4d3eee" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,12 +35,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="logger" />
-                    <option name="lastUsedInstant" value="1710439933" />
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1710440720" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1710337327" />
+                    <option name="branchName" value="logger" />
+                    <option name="lastUsedInstant" value="1710439933" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="master" />
@@ -67,6 +69,9 @@
   <component name="KubernetesSettings">
     <option name="contextName" value="arn:aws:eks:sa-east-1:557411200195:cluster/pag-aivpc-acquire-sandbox" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -78,6 +83,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultGoTemplateProperty": "Go File",
+    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
     "Go Build.go build github.com/Pauloricardo2019/teste_fazpay/cmd/api.executor": "Run",
     "Go Build.go build github.com/Pauloricardo2019/teste_fazpay/cmd/migration.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -85,7 +91,7 @@
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "git-widget-placeholder": "logger",
+    "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
     "last_opened_file_path": "/home/paulo/Documentos/Pessoais/stone_teste",
@@ -101,7 +107,7 @@
       <recent name="$PROJECT_DIR$/adapter/database/sql" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build github.com/Pauloricardo2019/teste_fazpay/cmd/api">
+  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
     <configuration name="go build github.com/Pauloricardo2019/teste_fazpay/cmd/api" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="teste_fazpay" />
       <working_directory value="$PROJECT_DIR$" />
@@ -131,12 +137,26 @@
       <filePath value="$PROJECT_DIR$/cmd/migration/main.go" />
       <method v="2" />
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <list>
+      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       <item itemvalue="Go Build.go build github.com/Pauloricardo2019/teste_fazpay/cmd/api" />
       <item itemvalue="Go Build.go build github.com/Pauloricardo2019/teste_fazpay/cmd/migration" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="Go Build.go build github.com/Pauloricardo2019/teste_fazpay/cmd/api" />
         <item itemvalue="Go Build.go build github.com/Pauloricardo2019/teste_fazpay/cmd/migration" />
       </list>

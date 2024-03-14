@@ -17,6 +17,8 @@ services:
 
   api:
     container_name: api_fazpay
+    depends_on:
+      - mysql
     build: .
     restart: always
     ports:
