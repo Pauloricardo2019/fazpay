@@ -86,13 +86,14 @@ func (s *SecurityFacade) Login(ctx context.Context, loginRequest *dto.LoginReque
 		s.logger.LoggerError(ctx, constants.ErrorUserNotFound, "facade")
 		return nil, constants.ErrorUserNotFound
 	}
+	s.logger.LoggerInfo(ctx, "user found", "facade")
 
 	tokenCreated, err := s.tokenService.CreateForLogin(ctx, userFound)
 	if err != nil {
 		s.logger.LoggerError(ctx, err, "facade")
 		return nil, err
 	}
-
+	s.logger.LoggerInfo(ctx, "token created", "facade")
 	loginResponse := &dto.LoginResponse{}
 	loginResponse.ParseFromTokenAndUserVO(tokenCreated, userFound)
 

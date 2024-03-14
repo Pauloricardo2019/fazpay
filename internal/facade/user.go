@@ -52,13 +52,13 @@ func (u *UserFacade) CreateUser(ctx context.Context, createUserRequestDTO *dto.C
 }
 
 func (u *UserFacade) GetByIdUser(ctx context.Context, id uint64) (*dto.GetUserByIDResponse, error) {
-
+	u.logger.LoggerInfo(ctx, "GetByIdUser", "facade")
 	found, user, err := u.userService.GetById(ctx, id)
 	if err != nil {
-		found = false
 		return nil, err
 	}
-	if found != true {
+	if !found {
+		u.logger.LoggerError(ctx, constants.ErrorUserNotFound, "facade")
 		return nil, constants.ErrorUserNotFound
 	}
 
@@ -69,17 +69,20 @@ func (u *UserFacade) GetByIdUser(ctx context.Context, id uint64) (*dto.GetUserBy
 }
 
 func (u *UserFacade) UpdateUser(ctx context.Context, id uint64, updateUserRequest *dto.UpdateUserRequest) error {
+	u.logger.LoggerInfo(ctx, "UpdateUser", "facade")
 	updateUserRequest.ID = id
 	updateUser := updateUserRequest.ParseToUserObject()
 
 	found, _, err := u.userService.GetByEmail(ctx, updateUser.Email)
 	if err != nil {
+		u.logger.LoggerError(ctx, err, "facade")
 		return err
 	}
-
 	if found {
+		u.logger.LoggerWarn(ctx, constants.ErrorEmailAlreadyExists.Error(), "facade")
 		return constants.ErrorEmailAlreadyExists
 	}
+	u.logger.LoggerInfo(ctx, "user updated", "facade")
 
 	if err := u.userService.Update(ctx, updateUser); err != nil {
 		return err
@@ -88,8 +91,9 @@ func (u *UserFacade) UpdateUser(ctx context.Context, id uint64, updateUserReques
 }
 
 func (u *UserFacade) DeleteUser(ctx context.Context, id uint64) error {
-
+	u.logger.LoggerInfo(ctx, "DeleteUser", "facade")
 	if err := u.userService.Delete(ctx, id); err != nil {
+		u.logger.LoggerError(ctx, err, "facade")
 		return err
 	}
 	return nil

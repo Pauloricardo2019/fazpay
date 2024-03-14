@@ -16,5 +16,9 @@ func NewDb(cfg *model.Config) *gorm.DB {
 		fmt.Println("error opening connection ", err)
 	}
 
+	if cfg.Environment == "dev" {
+		db.Debug()
+	}
+
 	return db
 }

@@ -84,10 +84,13 @@ func (u *UserController) CreateUser(c *gin.Context) {
 // @Router			/v1/user/{id}		[get]
 // @Security		ApiKeyAuth
 func (u *UserController) GetByIdUser(c *gin.Context) {
-	ctx := c.Request.Context()
+	ctx := u.getContextValues(c)
+
+	u.logger.LoggerInfo(ctx, "GetByIdUser", "controller")
 
 	id, err := strconv.ParseUint(c.Param("id"), 10, 64)
 	if err != nil {
+		u.logger.LoggerError(ctx, constants.ErrorParsingId, "controller")
 		c.JSON(http.StatusBadRequest, &dto.Error{Message: constants.ErrorParsingId.Error()})
 		return
 	}
@@ -95,13 +98,15 @@ func (u *UserController) GetByIdUser(c *gin.Context) {
 	user, err := u.userFacade.GetByIdUser(ctx, id)
 	if err != nil {
 		if err.Error() == constants.ErrorUserNotFound.Error() {
+			u.logger.LoggerError(ctx, constants.ErrorUserNotFound, "controller")
 			c.JSON(http.StatusNotFound, &dto.Error{Message: constants.ErrorUserNotFound.Error()})
 			return
 		}
+		u.logger.LoggerError(ctx, err, "controller")
 		c.JSON(http.StatusInternalServerError, &dto.Error{Message: err.Error()})
 		return
 	}
-
+	u.logger.LoggerInfo(ctx, "user found", "controller")
 	c.JSON(http.StatusOK, user)
 }
 
@@ -119,7 +124,7 @@ func (u *UserController) GetByIdUser(c *gin.Context) {
 // @Router			/v1/user/{id}	[put]
 // @Security		ApiKeyAuth
 func (u *UserController) UpdateUser(c *gin.Context) {
-	ctx := c.Request.Context()
+	ctx := u.getContextValues(c)
 
 	tokenUserID, found := c.Get("user_id")
 	if !found {
@@ -167,7 +172,7 @@ func (u *UserController) UpdateUser(c *gin.Context) {
 // @Router			/v1/user/{id}		[delete]
 // @Security		ApiKeyAuth
 func (u *UserController) DeleteUser(c *gin.Context) {
-	ctx := c.Request.Context()
+	ctx := u.getContextValues(c)
 
 	tokenUserID, found := c.Get("user_id")
 	if !found {

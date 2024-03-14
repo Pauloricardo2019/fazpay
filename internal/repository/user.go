@@ -38,6 +38,7 @@ func (u *UserRepository) Create(ctx context.Context, user *model.User) (*model.U
 }
 
 func (u *UserRepository) GetById(ctx context.Context, id uint64) (bool, *model.User, error) {
+	u.logger.LoggerInfo(ctx, "GetById", "repository")
 	conn, err := u.GetConnection(ctx)
 	if err != nil {
 		return false, nil, err
@@ -51,7 +52,7 @@ func (u *UserRepository) GetById(ctx context.Context, id uint64) (bool, *model.U
 		}
 		return false, nil, err
 	}
-
+	u.logger.LoggerInfo(ctx, "user found", "repository")
 	return true, &user, nil
 }
 
@@ -75,6 +76,7 @@ func (u *UserRepository) GetByEmail(ctx context.Context, email string) (bool, *m
 }
 
 func (u *UserRepository) Update(ctx context.Context, user *model.User) error {
+	u.logger.LoggerInfo(ctx, "Update", "repository")
 	conn, err := u.GetConnection(ctx)
 	if err != nil {
 		return err
@@ -93,10 +95,14 @@ func (u *UserRepository) Update(ctx context.Context, user *model.User) error {
 	if err != nil {
 		return err
 	}
+
+	u.logger.LoggerInfo(ctx, "user updated", "repository")
+
 	return nil
 }
 
 func (u *UserRepository) Delete(ctx context.Context, id uint64) error {
+	u.logger.LoggerInfo(ctx, "Delete", "repository")
 	conn, err := u.GetConnection(ctx)
 	if err != nil {
 		return err
@@ -105,11 +111,13 @@ func (u *UserRepository) Delete(ctx context.Context, id uint64) error {
 	if err = conn.Delete(&model.User{ID: id}).Error; err != nil {
 		return err
 	}
+	u.logger.LoggerInfo(ctx, "user deleted", "repository")
 
 	return nil
 }
 
 func (u *UserRepository) GetByEmailAndPassword(ctx context.Context, user *model.User) (bool, *model.User, error) {
+	u.logger.LoggerInfo(ctx, "GetByEmailAndPassword", "repository")
 	conn, err := u.GetConnection(ctx)
 	if err != nil {
 		return false, nil, err
@@ -125,6 +133,6 @@ func (u *UserRepository) GetByEmailAndPassword(ctx context.Context, user *model.
 		}
 		return false, nil, err
 	}
-
+	u.logger.LoggerInfo(ctx, "user found", "repository")
 	return true, user, nil
 }

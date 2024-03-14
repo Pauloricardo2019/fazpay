@@ -50,25 +50,29 @@ func (l *loginController) getContextValues(c *gin.Context) context.Context {
 // @Security ApiKeyAuth
 func (l *loginController) Login(c *gin.Context) {
 	ctx := l.getContextValues(c)
-
+	l.logger.LoggerInfo(ctx, "Login", "controller")
 	loginRequest := &dto.LoginRequest{}
 
 	if err := c.BindJSON(loginRequest); err != nil {
+		l.logger.LoggerError(ctx, err, "controller")
 		c.JSON(http.StatusInternalServerError, &dto.Error{Message: err.Error()})
 		return
 	}
 
 	loginResponse, err := l.securityFacade.Login(ctx, loginRequest)
-
 	if err != nil {
 		switch {
 		case errors.Is(err, constants.ErrorUserNotFound):
+			l.logger.LoggerError(ctx, constants.ErrorUserNotFound, "controller")
 			c.JSON(http.StatusNotFound, &dto.Error{Message: err.Error()})
 		default:
+			l.logger.LoggerError(ctx, err, "controller")
 			c.JSON(http.StatusInternalServerError, &dto.Error{Message: err.Error()})
 		}
 		return
 	}
+
+	l.logger.LoggerInfo(ctx, "user logged in", "controller")
 	c.JSON(http.StatusOK, loginResponse)
 
 }

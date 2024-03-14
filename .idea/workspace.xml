@@ -5,30 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="10ca0d82-9c76-4b45-8910-d21fed4d3eee" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/adapter/logger/handler.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/adapter/logger/interface/logger.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/adapter/logger/module.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/middleware/track.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adapter/web/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/adapter/web/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/bootstrap/module.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/bootstrap/module.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/controller/health_check.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/controller/health_check.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/controller/init_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/adapter/database/sql/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/adapter/database/sql/database.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/controller/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/controller/login.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/controller/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/controller/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/facade/security.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/facade/security.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/facade/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/facade/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/middleware/interface/middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/middleware/interface/middleware.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/middleware/log.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/middleware/module.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/middleware/module.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/repository/token.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/token.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/repository/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/service/token.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/service/token.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/service/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/service/user.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,6 +40,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="logger" />
+                    <option name="lastUsedInstant" value="1710439933" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="main" />
                     <option name="lastUsedInstant" value="1710337327" />
@@ -105,7 +93,7 @@
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "logger",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
     "last_opened_file_path": "/home/paulo/Documentos/Pessoais/stone_teste",
@@ -196,17 +184,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/internal/repository/user.go</url>
-          <line>117</line>
+          <line>125</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/internal/controller/user.go</url>
-          <line>88</line>
+          <line>90</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/internal/controller/user.go</url>
-          <line>123</line>
+          <line>128</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>

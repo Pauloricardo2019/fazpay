@@ -122,11 +122,12 @@ func (u *UserService) Create(ctx context.Context, user *model.User) (*model.User
 }
 
 func (u *UserService) GetById(ctx context.Context, id uint64) (bool, *model.User, error) {
+	u.logger.LoggerInfo(ctx, "GetById", "service")
 	return u.userRepository.GetById(ctx, id)
 }
 
 func (u *UserService) Update(ctx context.Context, user *model.User) error {
-
+	u.logger.LoggerInfo(ctx, "Update", "service")
 	if err := u.validateUser(ctx, user); err != nil {
 		return err
 	}
@@ -135,10 +136,12 @@ func (u *UserService) Update(ctx context.Context, user *model.User) error {
 }
 
 func (u *UserService) Delete(ctx context.Context, id uint64) error {
+	u.logger.LoggerInfo(ctx, "Delete", "service")
 	return u.userRepository.Delete(ctx, id)
 }
 
 func (u *UserService) GetByEmailAndPassword(ctx context.Context, user *model.User) (bool, *model.User, error) {
+	u.logger.LoggerInfo(ctx, "GetByEmailAndPassword", "service")
 	user = u.encryptAndClearingPassword(ctx, user)
 	return u.userRepository.GetByEmailAndPassword(ctx, user)
 }
