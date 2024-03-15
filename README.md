@@ -1,5 +1,10 @@
 # FAZPAY-API
 
+## ℹ️ Rota da documentação:
+```
+http:localhost:9090/swagger/index.html
+```
+
 <img src="swagger.png" alt="Swagger image">
 
 > Api para gerenciamento de usuários com a feature de login, cadastre-se faça o login e teste as funcionalidades da api.
